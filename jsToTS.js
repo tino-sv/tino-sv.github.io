@@ -136,12 +136,13 @@ function clearInput() {
       "cat_photo",
       "cat",
       "vid",
-      "video",
    ];
    allInput.forEach(function (input) {
       const element = document.getElementById(input);
       if (element) {
          if (input === "cat_photo") {
+            element.src = "";
+         } else if (input === "vid") {
             element.src = "";
          } else {
             element.value = "";
@@ -192,12 +193,11 @@ function displayImage(dataURL) {
    document.body.appendChild(img);
 }
 
-const videoInput = document.getElementById("video");
-videoInput.addEventListener("change", handleVideoUpload);
+const videoUpload = document.getElementById("vid");
+fileInput.addEventListener("change", handleFileUpload);
 
 function handleVideoUpload(event) {
-   let _a;
-   _b;
+   let _a, _b;
    const file =
       (_b =
          (_a = event.target) === null || _a === void 0 ? void 0 : _a.files) ===
@@ -210,9 +210,9 @@ function handleVideoUpload(event) {
          let _a;
          const videoUrl =
             (_a = e.target) === null || _a === void 0 ? void 0 : _a.result;
-         const vid = document.getElementById("video");
-         if (vid) {
-            vid.src = videoUrl;
+         const video = document.getElementById("vid");
+         if (video) {
+            video.src = videoUrl;
          }
       };
       reader.readAsDataURL(file);
@@ -222,7 +222,7 @@ function handleVideoUpload(event) {
 }
 
 function displayVideo(dataURL) {
-   const vid = document.createElement("vid");
-   vid.src = dataURL;
-   document.body.appendChild(vid);
+   const video = document.createElement("vid");
+   video.src = dataURL;
+   document.body.appendChild(video);
 }
